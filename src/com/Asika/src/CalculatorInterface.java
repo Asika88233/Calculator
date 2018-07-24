@@ -9,9 +9,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-
+//初始化gui
 public class CalculatorInterface {
-	JFrame frame = new JFrame("Calculator");
+	JFrame frame = new JFrame("Asika's Calculator v1.0");
    //result_TestField 为生成一个文本框方法，参数设置为20个字符，默认为没有空白·输入 全局变量
 	 public static JTextField result_TestField = new JTextField("", 20);
 	JButton button0 = new JButton("0");

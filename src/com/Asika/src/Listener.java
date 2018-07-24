@@ -1,7 +1,7 @@
 package com.Asika.src;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-
+import java.text.DecimalFormat;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.script.ScriptEngine;
@@ -36,10 +36,15 @@ class Listener  extends JFrame implements ActionListener{
 		if(Action.equals(equal)){			
 			ScriptEngineManager manager = new ScriptEngineManager();
 			ScriptEngine engine = manager.getEngineByName("js");
+			if (Text.equals(Reset)) {
+				CalculatorInterface.result_TestField.setText(Reset);
+			}
 			try {
 			//注意 不能直接进行强转换，而要使用tostring方法
-				String result = engine.eval(Text).toString();
-				CalculatorInterface.result_TestField.setText(result);
+				//默认保留4位小数
+				var result = engine.eval(Text);
+				var result_f=new DecimalFormat("0.0000").format(result).toString();
+				CalculatorInterface.result_TestField.setText(result_f);
 			} catch (ScriptException e1) {
 				// TODO  如果计算有问题 则会在文本框中打印错误信息
 				CalculatorInterface.result_TestField.setText(Error);
@@ -48,6 +53,7 @@ class Listener  extends JFrame implements ActionListener{
 		else if(Action.equals(Clear)){
 			CalculatorInterface.result_TestField.setText(Reset);
 		}
+		
 		else {
 			Text+=Action;
 			CalculatorInterface.result_TestField.setText(Text);
