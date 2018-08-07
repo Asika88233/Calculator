@@ -1,7 +1,9 @@
 package com.Asika.src;
-
-
-
+/**
+ * 以下说几句个人理解，
+ * @author Asika
+ *
+ */
 public class Calculator {
           public  Calculator () {
         	  CalculatorInterface Interface = new CalculatorInterface();

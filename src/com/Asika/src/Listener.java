@@ -7,9 +7,9 @@ import java.awt.event.ActionListener;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
-class Listener  extends JFrame implements ActionListener{
+@SuppressWarnings("serial")
+public class Listener  extends JFrame implements ActionListener{
 	 
-	@SuppressWarnings("unchecked")
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO 监听方法的实现，主要是通过按钮传入的值来进行进行何种操作的判断
@@ -38,8 +38,9 @@ class Listener  extends JFrame implements ActionListener{
 			ScriptEngine engine = manager.getEngineByName("js");
 			if (Text.equals(Reset)) {
 				CalculatorInterface.result_TestField.setText(Reset);
-			}
-			try {
+			} 
+			else {
+			   try {
 			//注意 不能直接进行强转换，而要使用tostring方法
 				//默认保留4位小数
 				var result = engine.eval(Text);
@@ -49,6 +50,7 @@ class Listener  extends JFrame implements ActionListener{
 				// TODO  如果计算有问题 则会在文本框中打印错误信息
 				CalculatorInterface.result_TestField.setText(Error);
 			}
+		  }
 		}
 		else if(Action.equals(Clear)){
 			CalculatorInterface.result_TestField.setText(Reset);
