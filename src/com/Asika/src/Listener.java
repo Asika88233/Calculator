@@ -32,10 +32,10 @@ public class Listener  extends JFrame implements ActionListener{
         
 		String Action = ((JButton) e.getSource()).getText();
 		String Text= CalculatorInterface.result_TestField.getText();
-		
+		ScriptEngineManager manager = new ScriptEngineManager();
+		ScriptEngine engine = manager.getEngineByName("js");
 		if(Action.equals(equal)){			
-			ScriptEngineManager manager = new ScriptEngineManager();
-			ScriptEngine engine = manager.getEngineByName("js");
+			
 			if (Text.equals(Reset)) {
 				CalculatorInterface.result_TestField.setText(Reset);
 			} 
@@ -43,9 +43,8 @@ public class Listener  extends JFrame implements ActionListener{
 			   try {
 			//注意 不能直接进行强转换，而要使用tostring方法
 				//默认保留4位小数
-				var result = engine.eval(Text);
-				var result_f=new DecimalFormat("0.0000").format(result).toString();
-				CalculatorInterface.result_TestField.setText(result_f);
+				String result = engine.eval(Text).toString();
+				CalculatorInterface.result_TestField.setText(result);
 			} catch (ScriptException e1) {
 				// TODO  如果计算有问题 则会在文本框中打印错误信息
 				CalculatorInterface.result_TestField.setText(Error);
